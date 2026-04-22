@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm -v)",
+      "Bash(pnpm -v)",
+      "Bash(npx --yes create-next-app@latest . --typescript --tailwind --app --src-dir --import-alias \"@/*\" --use-npm --no-eslint --yes)",
+      "Bash(npm install *)",
+      "Bash(mkdir -p \"M:/my web/src/app/projects/[slug]\")",
+      "Bash(cp \"M:/Data/Mahmoud_Adel_CV.pdf\" \"M:/my web/public/Mahmoud_Adel_CV.pdf\")",
+      "Bash(npm view *)",
+      "Bash(grep -E \"^next$\")",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}  %{size_download}B  %{time_total}s\\\\n\" http://localhost:3000/)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}  %{size_download}B  %{time_total}s\\\\n\" http://localhost:3000/ --max-time 60)",
+      "Bash(curl -s -o /dev/null -w \"GET /: HTTP %{http_code}  %{size_download}B  %{time_total}s\\\\n\" http://localhost:3000/ --max-time 60)",
+      "Bash(curl -s -o /dev/null -w \"GET /projects/self-balancing-robot: HTTP %{http_code}  %{size_download}B  %{time_total}s\\\\n\" http://localhost:3000/projects/self-balancing-robot --max-time 60)",
+      "Bash(curl -s -o /dev/null -w \"GET /projects/spine-scanner: HTTP %{http_code}  %{size_download}B  %{time_total}s\\\\n\" http://localhost:3000/projects/spine-scanner --max-time 60)",
+      "Bash(taskkill //F //FI \"WINDOWTITLE eq npm*\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000/ --max-time 5)",
+      "Bash(netstat -ano)",
+      "Bash(taskkill //F //PID 12236)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000/ --max-time 3)",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}
