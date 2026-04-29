@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
-import { ArrowRight, Download, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
@@ -91,14 +91,7 @@ export function Hero() {
             Get in touch
             <ArrowRight />
           </Link>
-          <a
-            href={profile.resume}
-            download
-            className={cn(buttonVariants({ variant: "ghost", size: "lg" }))}
-          >
-            <Download />
-            Download CV
-          </a>
+
         </motion.div>
 
         <motion.ul

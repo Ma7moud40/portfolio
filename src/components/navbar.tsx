@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Download } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { profile } from "@/data/profile";
@@ -71,17 +71,6 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <a
-            href={profile.resume}
-            download
-            className={cn(
-              buttonVariants({ variant: "ghost", size: "sm" }),
-              "hidden sm:inline-flex"
-            )}
-          >
-            <Download />
-            Resume
-          </a>
           <button
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
@@ -114,17 +103,7 @@ export function Navbar() {
                   </Link>
                 </li>
               ))}
-              <li className="pt-2">
-                <a
-                  href={profile.resume}
-                  download
-                  className={cn(buttonVariants({ variant: "primary" }), "w-full")}
-                  onClick={() => setOpen(false)}
-                >
-                  <Download />
-                  Download Resume
-                </a>
-              </li>
+
             </ul>
           </motion.div>
         )}

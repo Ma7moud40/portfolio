@@ -2,9 +2,9 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 const schema = z.object({
-  name: z.string().min(1).max(120),
-  email: z.string().email().max(200),
-  message: z.string().min(5).max(5000),
+  name: z.string().min(1, "Name is required").max(120),
+  email: z.string().email("Please enter a valid email").max(200),
+  message: z.string().min(1, "Message is required").max(5000),
 });
 
 export const runtime = "nodejs";
@@ -19,8 +19,9 @@ export async function POST(request: Request) {
 
   const parsed = schema.safeParse(body);
   if (!parsed.success) {
+    const firstError = parsed.error.errors[0]?.message ?? "Please fill in all fields correctly.";
     return NextResponse.json(
-      { error: "Please fill in all fields correctly." },
+      { error: firstError },
       { status: 400 }
     );
   }

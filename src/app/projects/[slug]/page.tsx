@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight, Mail, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Mail } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Badge } from "@/components/ui/badge";
@@ -57,31 +57,13 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
             <header className="space-y-6">
               <div className="flex flex-wrap items-center gap-2">
                 <Badge variant="accent">{project.categoryLabel}</Badge>
-                {project.year && <Badge>{project.year}</Badge>}
-                {project.status && (
-                  <Badge variant="outline">{project.status}</Badge>
-                )}
               </div>
               <h1 className="font-display text-4xl font-bold leading-tight tracking-tight md:text-6xl">
                 <span className="text-gradient">{project.title}</span>
               </h1>
               <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
-                {project.long}
+                {project.short}
               </p>
-
-              <div>
-                <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-primary">
-                  Highlights
-                </p>
-                <ul className="space-y-2">
-                  {project.highlights.map((h) => (
-                    <li key={h} className="flex items-start gap-3 text-sm text-muted-foreground">
-                      <CheckCircle2 className="mt-0.5 size-4 flex-none text-primary" />
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
 
               <div>
                 <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-primary">

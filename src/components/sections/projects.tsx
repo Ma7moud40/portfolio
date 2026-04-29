@@ -10,7 +10,6 @@ import { cn } from "@/lib/utils";
 import {
   projects,
   projectCategories,
-  moreProjectsTeaser,
   type ProjectCategory,
 } from "@/data/projects";
 import { ProjectIcon } from "@/components/project-icon";
@@ -36,7 +35,8 @@ export function Projects() {
         kicker="Selected work from 50+ delivered builds — robotics, medical, power, embedded tooling, industrial."
       />
 
-      <div className="mb-8 flex flex-wrap gap-2" role="tablist">
+      {/* ── Category Filter ─────────────────────────────────── */}
+      <div className="mb-12 flex flex-wrap gap-2" role="tablist">
         {projectCategories.map((c) => (
           <button
             key={c.value}
@@ -55,66 +55,80 @@ export function Projects() {
         ))}
       </div>
 
-      <motion.div
-        layout
-        className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
-      >
+      {/* ── Bento Grid ──────────────────────────────────────── */}
+      <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <AnimatePresence mode="popLayout">
-          {filtered.map((p, idx) => (
-            <motion.article
-              key={p.slug}
-              layout
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{
-                duration: 0.45,
-                delay: idx * 0.05,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card/50 backdrop-blur-md transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_20px_60px_-15px_hsl(var(--primary)/0.25)]"
-            >
-              <Link
-                href={`/projects/${p.slug}`}
-                className="absolute inset-0 z-10"
-                aria-label={`View ${p.title}`}
-              />
-              <div className="relative aspect-[16/10] overflow-hidden border-b border-border bg-gradient-to-br from-card to-secondary">
-                <div className="absolute inset-0 opacity-40 transition-transform duration-700 group-hover:scale-110">
-                  <div className="absolute inset-0 grid-bg" />
-                </div>
-                <div className="absolute inset-0 grid place-items-center text-primary">
-                  <ProjectIcon
-                    slug={p.slug}
-                    className="size-20 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-6"
-                  />
-                </div>
-                <div className="absolute left-4 top-4 z-20">
-                  <Badge variant="accent" size="sm">
-                    {p.categoryLabel}
-                  </Badge>
-                </div>
-                <div className="absolute right-4 top-4 z-20 grid h-8 w-8 place-items-center rounded-full border border-border bg-background/80 text-foreground opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-0 translate-x-2">
-                  <ArrowUpRight className="size-4" />
-                </div>
-              </div>
-              <div className="flex flex-1 flex-col gap-3 p-5">
-                <h3 className="font-display text-lg font-semibold leading-tight">
-                  {p.title}
-                </h3>
-                <p className="text-sm text-muted-foreground line-clamp-3">
-                  {p.short}
-                </p>
-                <div className="mt-auto flex flex-wrap gap-1.5 pt-2">
-                  {p.tech.slice(0, 3).map((t) => (
-                    <Badge key={t} size="sm" variant="outline">
-                      {t}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-            </motion.article>
-          ))}
+          {filtered.map((p, idx) => {
+            // Make every 7th item span 2 columns and rows to create a bento effect on large screens
+            const isFeatured = idx % 7 === 0;
+
+            return (
+              <motion.div
+                key={p.slug}
+                layout
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className={cn(
+                  isFeatured ? "md:col-span-2 lg:col-span-2 lg:row-span-2" : ""
+                )}
+              >
+                <Link
+                  href={`/projects/${p.slug}`}
+                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card/40 p-6 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-primary/50 hover:bg-card/60 hover:shadow-[0_8px_30px_-12px_hsl(var(--primary)/0.3)]"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                  
+                  <div className="relative z-10 flex flex-1 flex-col">
+                    <div className="mb-4 flex items-start justify-between gap-4">
+                      <div className={cn(
+                        "grid flex-none place-items-center rounded-xl bg-primary/10 text-primary transition-transform group-hover:scale-110",
+                        isFeatured ? "h-14 w-14" : "h-12 w-12"
+                      )}>
+                        <ProjectIcon slug={p.slug} className={isFeatured ? "size-7" : "size-6"} />
+                      </div>
+                      <div className="grid h-8 w-8 flex-none place-items-center rounded-full border border-border bg-background/50 text-muted-foreground opacity-0 backdrop-blur-md transition-all group-hover:opacity-100 group-hover:border-primary/40 group-hover:text-primary">
+                        <ArrowUpRight className="size-4" />
+                      </div>
+                    </div>
+
+                    <div className="mb-3">
+                      <Badge variant="accent" size="sm" className="mb-2">
+                        {p.categoryLabel}
+                      </Badge>
+                      <h3 className={cn(
+                        "font-display font-semibold leading-tight text-foreground transition-colors group-hover:text-primary",
+                        isFeatured ? "text-2xl md:text-3xl" : "text-xl"
+                      )}>
+                        {p.title}
+                      </h3>
+                    </div>
+
+                    <p className={cn(
+                      "mb-6 text-muted-foreground",
+                      isFeatured ? "text-base line-clamp-4" : "text-sm line-clamp-3"
+                    )}>
+                      {p.short}
+                    </p>
+
+                    <div className="mt-auto flex flex-wrap gap-1.5 pt-4">
+                      {p.tech.slice(0, isFeatured ? 6 : 3).map((t) => (
+                        <Badge key={t} size="sm" variant="outline" className="bg-background/50">
+                          {t}
+                        </Badge>
+                      ))}
+                      {p.tech.length > (isFeatured ? 6 : 3) && (
+                        <Badge size="sm" variant="outline" className="bg-background/50 text-muted-foreground">
+                          +{p.tech.length - (isFeatured ? 6 : 3)}
+                        </Badge>
+                      )}
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            );
+          })}
         </AnimatePresence>
       </motion.div>
 
@@ -123,31 +137,6 @@ export function Projects() {
           No projects in this category yet.
         </p>
       )}
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="mt-12 rounded-2xl border border-border bg-card/40 p-6 backdrop-blur-md md:p-8"
-      >
-        <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-primary">
-          + {moreProjectsTeaser.length} more projects
-        </p>
-        <div className="flex flex-wrap gap-2">
-          {moreProjectsTeaser.slice(0, 18).map((m) => (
-            <span
-              key={m}
-              className="rounded-full border border-border bg-card/50 px-3 py-1 text-xs text-muted-foreground"
-            >
-              {m}
-            </span>
-          ))}
-          <span className="rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs text-primary">
-            … and more
-          </span>
-        </div>
-      </motion.div>
     </section>
   );
 }

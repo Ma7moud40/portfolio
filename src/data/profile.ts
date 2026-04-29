@@ -9,7 +9,6 @@ export const profile = {
   phoneDisplay: "+20 106 476 8340",
   linkedin: "https://linkedin.com/in/mahmoud-adelll154",
   linkedinHandle: "/in/mahmoud-adelll154",
-  resume: "/Mahmoud_Adel_CV.pdf",
   summary:
     "Embedded Systems Engineer with hands-on experience developing devices, robots, and electronic circuits. I love turning a schematic into a working system — from firmware on microcontrollers to custom PCBs.",
   longSummary:
