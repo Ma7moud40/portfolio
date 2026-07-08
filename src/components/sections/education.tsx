@@ -30,7 +30,7 @@ export function Education() {
                 delay: idx * 0.1,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="group flex items-start gap-4 rounded-2xl border border-border bg-card/60 p-6 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-primary/40"
+              className="group flex items-start gap-4 rounded-2xl glass-card p-6"
             >
               <span className="grid h-12 w-12 flex-none place-items-center rounded-xl bg-primary/10 text-primary">
                 <Icon className="size-6" />
@@ -66,7 +66,7 @@ export function Education() {
                 <span className="font-medium">{l.name}</span>
                 <span className="font-mono text-xs text-primary">{l.level}</span>
               </div>
-              <div className="h-1.5 overflow-hidden rounded-full border border-border bg-card">
+              <div className="h-1.5 overflow-hidden rounded-full glass-badge">
                 <motion.span
                   initial={{ width: 0 }}
                   whileInView={{ width: `${l.percent}%` }}

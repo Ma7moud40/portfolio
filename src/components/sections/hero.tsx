@@ -47,7 +47,7 @@ export function Hero() {
           initial="hidden"
           animate="show"
           custom={0}
-          className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium text-primary"
+          className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/[0.04] backdrop-blur-xl px-4 py-1.5 text-xs font-medium text-primary shadow-[0_4px_20px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.06)]"
         >
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
@@ -99,7 +99,7 @@ export function Hero() {
           initial="hidden"
           animate="show"
           custom={4}
-          className="mx-auto mt-14 grid max-w-xl grid-cols-3 gap-4 rounded-2xl border border-border bg-card/30 p-5 backdrop-blur-md"
+          className="mx-auto mt-14 grid max-w-xl grid-cols-3 gap-4 rounded-2xl p-5 glass-card-strong"
         >
           {stats.map((s) => (
             <li key={s.label} className="flex flex-col items-center gap-1">

@@ -44,10 +44,10 @@ export function Projects() {
             aria-selected={filter === c.value}
             onClick={() => setFilter(c.value)}
             className={cn(
-              "rounded-full border px-4 py-1.5 text-xs font-medium transition-all",
+              "rounded-full border px-4 py-1.5 text-xs font-medium transition-all backdrop-blur-md",
               filter === c.value
-                ? "border-primary/50 bg-primary/15 text-primary"
-                : "border-border text-muted-foreground hover:border-primary/30 hover:text-foreground"
+                ? "border-primary/30 bg-primary/10 text-primary shadow-[0_0_15px_hsl(var(--primary)/0.15),inset_0_1px_1px_rgba(255,255,255,0.06)]"
+                : "border-white/[0.08] bg-white/[0.03] text-muted-foreground hover:border-white/[0.15] hover:text-foreground hover:bg-white/[0.06]"
             )}
           >
             {c.label}
@@ -76,7 +76,7 @@ export function Projects() {
               >
                 <Link
                   href={`/projects/${p.slug}`}
-                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card/40 p-6 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-primary/50 hover:bg-card/60 hover:shadow-[0_8px_30px_-12px_hsl(var(--primary)/0.3)]"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl glass-card p-6"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                   
@@ -88,7 +88,7 @@ export function Projects() {
                       )}>
                         <ProjectIcon slug={p.slug} className={isFeatured ? "size-7" : "size-6"} />
                       </div>
-                      <div className="grid h-8 w-8 flex-none place-items-center rounded-full border border-border bg-background/50 text-muted-foreground opacity-0 backdrop-blur-md transition-all group-hover:opacity-100 group-hover:border-primary/40 group-hover:text-primary">
+                      <div className="grid h-8 w-8 flex-none place-items-center rounded-full border border-white/[0.08] bg-white/[0.04] text-muted-foreground opacity-0 backdrop-blur-md transition-all group-hover:opacity-100 group-hover:border-primary/40 group-hover:text-primary">
                         <ArrowUpRight className="size-4" />
                       </div>
                     </div>

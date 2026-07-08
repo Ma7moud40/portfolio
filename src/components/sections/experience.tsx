@@ -9,7 +9,7 @@ export function Experience() {
   return (
     <section
       id="experience"
-      className="relative scroll-mt-24 border-y border-border bg-card/20 py-24 md:py-32"
+      className="relative scroll-mt-24 glass-section py-24 md:py-32"
     >
       <div className="container">
         <SectionHeading
@@ -36,7 +36,7 @@ export function Experience() {
                 className="absolute -left-[30px] top-6 grid h-4 w-4 place-items-center rounded-full border-2 border-primary bg-background shadow-[0_0_0_4px_hsl(var(--primary)/0.15)]"
                 aria-hidden
               />
-              <article className="group rounded-2xl border border-border bg-card/60 p-6 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 md:p-8">
+              <article className="group rounded-2xl glass-card p-6 md:p-8">
                 <div className="mb-3 flex flex-wrap items-center gap-3">
                   <Badge variant={idx === 0 ? "accent" : "default"}>{exp.period}</Badge>
                   <span className="font-mono text-xs text-muted-foreground">

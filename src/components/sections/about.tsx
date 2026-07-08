@@ -38,7 +38,7 @@ export function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="relative animated-border rounded-2xl bg-card/60 p-6 backdrop-blur-md"
+          className="relative animated-border rounded-2xl glass-card-strong p-6"
         >
           <ul className="divide-y divide-border">
             {facts.map(({ icon: Icon, label, value }) => (

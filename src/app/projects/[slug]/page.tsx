@@ -98,7 +98,7 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
               </div>
             </header>
 
-            <aside className="relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-card to-secondary">
+            <aside className="relative overflow-hidden rounded-2xl glass-card-strong">
               <div className="absolute inset-0 grid-bg opacity-50" />
               <div className="relative grid aspect-square place-items-center p-12">
                 <ProjectIcon
@@ -106,7 +106,7 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
                   className="size-40 text-primary"
                 />
               </div>
-              <div className="relative border-t border-border p-5">
+              <div className="relative border-t border-white/[0.06] p-5">
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
                   Summary
                 </p>
@@ -115,10 +115,10 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
             </aside>
           </div>
 
-          <nav className="mt-16 grid gap-4 border-t border-border pt-8 sm:grid-cols-2">
+          <nav className="mt-16 grid gap-4 border-t border-white/[0.06] pt-8 sm:grid-cols-2">
             <Link
               href={`/projects/${prev.slug}`}
-              className="group flex flex-col gap-1 rounded-xl border border-border p-5 text-left transition-all hover:-translate-y-0.5 hover:border-primary/40"
+              className="group flex flex-col gap-1 rounded-xl glass-card p-5"
             >
               <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
                 ← Previous
@@ -127,7 +127,7 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
             </Link>
             <Link
               href={`/projects/${next.slug}`}
-              className="group flex flex-col items-end gap-1 rounded-xl border border-border p-5 text-right transition-all hover:-translate-y-0.5 hover:border-primary/40"
+              className="group flex flex-col items-end gap-1 rounded-xl glass-card p-5 text-right"
             >
               <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
                 Next →

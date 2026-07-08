@@ -67,14 +67,20 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans`}
       >
+        {/* Animated glass background blobs */}
+        <div className="glass-bg-blobs" aria-hidden />
+        <div className="glass-bg-blob-extra" aria-hidden />
         {children}
         <Toaster
           position="bottom-center"
           theme="dark"
           toastOptions={{
             style: {
-              background: "hsl(222 47% 8%)",
-              border: "1px solid hsl(188 95% 53% / 0.4)",
+              background: "rgba(255, 255, 255, 0.06)",
+              backdropFilter: "blur(24px) saturate(200%)",
+              WebkitBackdropFilter: "blur(24px) saturate(200%)",
+              border: "1px solid rgba(255, 255, 255, 0.1)",
+              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.06)",
               color: "hsl(213 31% 91%)",
             },
           }}

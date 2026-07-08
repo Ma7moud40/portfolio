@@ -8,11 +8,11 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-gradient-to-br from-primary to-cyan-600 text-primary-foreground shadow-[0_10px_30px_-5px_hsl(var(--primary)/0.5)] hover:shadow-[0_14px_40px_-5px_hsl(var(--primary)/0.6)] hover:-translate-y-0.5",
+          "bg-gradient-to-br from-primary to-cyan-600 text-primary-foreground shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_10px_30px_-5px_hsl(var(--primary)/0.5)] hover:shadow-[0_0_0_1px_rgba(255,255,255,0.15),0_14px_40px_-5px_hsl(var(--primary)/0.6)] hover:-translate-y-0.5",
         ghost:
-          "border border-border bg-card/40 text-foreground hover:border-primary/40 hover:bg-primary/10 hover:-translate-y-0.5",
+          "border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl text-foreground shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] hover:border-white/[0.15] hover:bg-white/[0.08] hover:-translate-y-0.5",
         outline:
-          "border border-border bg-transparent text-foreground hover:border-primary/40 hover:bg-primary/5",
+          "border border-white/[0.06] bg-transparent backdrop-blur-md text-foreground hover:border-white/[0.12] hover:bg-white/[0.04]",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {

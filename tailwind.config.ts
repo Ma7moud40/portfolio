@@ -69,6 +69,16 @@ const config: Config = {
           "0%, 100%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
         },
+        float: {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "25%": { transform: "translate(30px, -40px) scale(1.05)" },
+          "50%": { transform: "translate(-20px, 20px) scale(0.95)" },
+          "75%": { transform: "translate(15px, 35px) scale(1.02)" },
+        },
+        "glass-pulse": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.85" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -76,6 +86,8 @@ const config: Config = {
         "fade-up": "fade-up 0.8s ease-out forwards",
         shimmer: "shimmer 3s linear infinite",
         "gradient-xy": "gradient-xy 15s ease infinite",
+        float: "float 20s ease-in-out infinite",
+        "glass-pulse": "glass-pulse 4s ease-in-out infinite",
       },
     },
   },

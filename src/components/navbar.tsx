@@ -39,9 +39,9 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         scrolled
-          ? "backdrop-blur-xl bg-background/80 border-b border-border"
+          ? "glass border-b border-white/[0.06] shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
           : "bg-transparent"
       )}
     >
@@ -51,7 +51,7 @@ export function Navbar() {
           className="group flex items-center gap-3 font-display font-bold"
           onClick={() => setOpen(false)}
         >
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-primary to-cyan-600 text-primary-foreground shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_6px_20px_hsl(var(--primary)/0.35)] transition-transform group-hover:scale-105">
+          <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-primary to-cyan-600 text-primary-foreground shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_6px_20px_hsl(var(--primary)/0.35)] transition-transform group-hover:scale-105">
             <span className="font-display text-sm font-bold">{profile.initials}</span>
           </span>
           <span className="hidden sm:inline-block text-sm">{profile.shortName}</span>
@@ -62,7 +62,7 @@ export function Navbar() {
             <li key={l.href}>
               <Link
                 href={l.href}
-                className="rounded-full px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground hover:bg-primary/10"
+                className="rounded-full px-3 py-2 text-sm text-muted-foreground transition-all hover:text-foreground hover:bg-white/[0.06] hover:backdrop-blur-md hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)]"
               >
                 {l.label}
               </Link>
@@ -75,7 +75,7 @@ export function Navbar() {
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="grid h-10 w-10 place-items-center rounded-lg border border-border text-foreground md:hidden"
+            className="grid h-10 w-10 place-items-center rounded-lg border border-white/[0.08] text-foreground backdrop-blur-md bg-white/[0.04] md:hidden transition-all hover:border-white/[0.15] hover:bg-white/[0.08]"
           >
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
@@ -89,7 +89,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="overflow-hidden border-t border-border bg-background/95 backdrop-blur-xl md:hidden"
+            className="overflow-hidden border-t border-white/[0.06] glass md:hidden"
           >
             <ul className="container flex flex-col gap-1 py-4">
               {links.map((l) => (
@@ -97,7 +97,7 @@ export function Navbar() {
                   <Link
                     href={l.href}
                     onClick={() => setOpen(false)}
-                    className="block rounded-lg px-4 py-3 text-base text-muted-foreground transition-colors hover:bg-primary/10 hover:text-foreground"
+                    className="block rounded-lg px-4 py-3 text-base text-muted-foreground transition-all hover:bg-white/[0.06] hover:text-foreground hover:backdrop-blur-md"
                   >
                     {l.label}
                   </Link>

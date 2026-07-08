@@ -5,7 +5,7 @@ import { profile } from "@/data/profile";
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative border-t border-border bg-card/30">
+    <footer className="relative glass-section">
       <div className="container py-12">
         <div className="grid gap-10 md:grid-cols-3">
           <div className="space-y-3">
@@ -72,7 +72,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col-reverse items-center justify-between gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row">
+        <div className="mt-10 flex flex-col-reverse items-center justify-between gap-3 border-t border-white/[0.06] pt-6 text-xs text-muted-foreground sm:flex-row">
           <span>© {year} {profile.name}. All rights reserved.</span>
           <span className="font-mono">
             Built with Next.js · Framer Motion · Three.js

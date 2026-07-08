@@ -49,7 +49,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative scroll-mt-24 border-t border-border bg-card/20 py-24 md:py-32"
+      className="relative scroll-mt-24 glass-section py-24 md:py-32"
     >
       <div className="container">
         <SectionHeading
@@ -111,7 +111,7 @@ function ContactCard({
       transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
       href={href}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className="group relative flex items-center gap-4 overflow-hidden rounded-2xl border border-border bg-card/60 p-5 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-primary/40"
+      className="group relative flex items-center gap-4 overflow-hidden rounded-2xl glass-card p-5"
     >
       <span className="grid h-12 w-12 flex-none place-items-center rounded-xl bg-primary/10 text-primary">
         <Icon className="size-5" />
@@ -127,7 +127,7 @@ function ContactCard({
         aria-label={`Copy ${label}`}
         onClick={handleCopy}
         className={cn(
-          "grid h-9 w-9 place-items-center rounded-full border border-border text-muted-foreground transition-all group-hover:border-primary/40 group-hover:text-primary",
+          "grid h-9 w-9 place-items-center rounded-full border border-white/[0.08] bg-white/[0.04] backdrop-blur-md text-muted-foreground transition-all group-hover:border-primary/40 group-hover:text-primary",
           copied && "border-primary/60 text-primary"
         )}
       >
@@ -192,7 +192,7 @@ function ContactForm() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="relative animated-border space-y-4 rounded-2xl bg-card/60 p-6 backdrop-blur-md md:p-8"
+      className="relative animated-border space-y-4 rounded-2xl glass-card-strong p-6 md:p-8"
     >
       <div className="grid gap-4 sm:grid-cols-2">
         <Field
@@ -258,7 +258,7 @@ function Field({
   | React.TextareaHTMLAttributes<HTMLTextAreaElement>
 )) {
   const baseClass =
-    "w-full rounded-xl border border-border bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/30";
+    "w-full rounded-xl glass-input px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground";
   return (
     <label className="flex flex-col gap-1.5 text-sm">
       <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
