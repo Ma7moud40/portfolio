@@ -53,7 +53,7 @@ function SkillGroup({
   items,
 }: {
   title: string;
-  items: readonly { name: string; glyph: string }[];
+  items: readonly { name: string; glyph: string; level: number }[];
 }) {
   return (
     <div>
@@ -66,9 +66,9 @@ function SkillGroup({
         viewport={{ once: true, margin: "-80px" }}
         variants={{
           hidden: {},
-          show: { transition: { staggerChildren: 0.05 } },
+          show: { transition: { staggerChildren: 0.07 } },
         }}
-        className="grid gap-2.5 sm:grid-cols-2"
+        className="flex flex-col gap-3"
       >
         {items.map((s) => (
           <motion.li
@@ -78,12 +78,34 @@ function SkillGroup({
               show: { opacity: 1, y: 0 },
             }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="group flex items-center gap-3 rounded-xl glass-card p-4"
+            className="group flex flex-col gap-2.5 rounded-xl glass-card p-4"
           >
-            <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary/10 font-mono text-sm font-semibold text-primary">
-              {s.glyph}
-            </span>
-            <span className="text-sm font-medium">{s.name}</span>
+            {/* Header row */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary/10 font-mono text-sm font-semibold text-primary">
+                  {s.glyph}
+                </span>
+                <span className="text-sm font-medium">{s.name}</span>
+              </div>
+              <span className="font-mono text-xs font-semibold text-primary/80">
+                {s.level}%
+              </span>
+            </div>
+
+            {/* Animated bar */}
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/[0.06]">
+              <motion.div
+                className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-primary"
+                initial={{ width: 0 }}
+                whileInView={{ width: `${s.level}%` }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+                style={{
+                  boxShadow: "0 0 10px hsl(188 95% 53% / 0.45)",
+                }}
+              />
+            </div>
           </motion.li>
         ))}
       </motion.ul>

@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 import { profile } from "@/data/profile";
+import { ScrollProgress } from "@/components/scroll-progress";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -46,11 +47,20 @@ export const metadata: Metadata = {
     title: `${profile.name} — ${profile.title}`,
     description: profile.summary,
     siteName: profile.shortName,
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: `${profile.name} — ${profile.title}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${profile.name} — ${profile.title}`,
     description: profile.summary,
+    images: ["/opengraph-image"],
   },
   icons: {
     icon: "/favicon.svg",
@@ -70,6 +80,7 @@ export default function RootLayout({
         {/* Animated glass background blobs */}
         <div className="glass-bg-blobs" aria-hidden />
         <div className="glass-bg-blob-extra" aria-hidden />
+        <ScrollProgress />
         {children}
         <Toaster
           position="bottom-center"

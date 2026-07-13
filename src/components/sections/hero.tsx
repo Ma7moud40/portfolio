@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -42,11 +43,43 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-transparent to-background" />
 
       <div className="container relative z-10 py-24 text-center md:py-32">
-        <motion.p
+        {/* Profile avatar */}
+        <motion.div
           variants={fadeUp}
           initial="hidden"
           animate="show"
           custom={0}
+          className="mb-8 flex justify-center"
+        >
+          <div className="relative">
+            {/* Outer glow ring */}
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-cyan-400 via-primary to-sky-500 opacity-70 blur-[6px]" />
+            {/* Animated border */}
+            <div className="relative rounded-full p-[2px] bg-gradient-to-br from-cyan-400/80 to-primary/40">
+              <div className="relative overflow-hidden rounded-full h-28 w-28 md:h-32 md:w-32 bg-background">
+                <Image
+                  src="/avatar.jpg"
+                  alt={profile.name}
+                  fill
+                  sizes="(max-width: 768px) 112px, 128px"
+                  className="object-cover object-top"
+                  priority
+                />
+              </div>
+            </div>
+            {/* Availability pulse dot */}
+            <span className="absolute bottom-1.5 right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-background ring-2 ring-background">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-400" />
+            </span>
+          </div>
+        </motion.div>
+
+        <motion.p
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          custom={1}
           className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/[0.04] backdrop-blur-xl px-4 py-1.5 text-xs font-medium text-primary shadow-[0_4px_20px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.06)]"
         >
           <span className="relative flex h-2 w-2">
@@ -60,7 +93,7 @@ export function Hero() {
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          custom={1}
+          custom={2}
           className="mx-auto max-w-5xl font-display text-4xl font-bold leading-[1.05] tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl"
         >
           <span className="text-gradient">{profile.shortName}</span>

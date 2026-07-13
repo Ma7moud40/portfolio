@@ -55,19 +55,19 @@ export const experiences = [
 ] as const;
 
 export const technicalSkills = [
-  { name: "C / C++", glyph: "</>" },
-  { name: "Embedded Firmware", glyph: "μ" },
-  { name: "PCB Design & Manufacturing", glyph: "▦" },
-  { name: "Robotics & ROS", glyph: "◉" },
-  { name: "Flutter", glyph: "📱" },
-  { name: "Electronics", glyph: "⚡" },
+  { name: "C / C++", glyph: "</>", level: 90 },
+  { name: "Embedded Firmware", glyph: "μ", level: 88 },
+  { name: "PCB Design & Manufacturing", glyph: "▦", level: 85 },
+  { name: "Robotics & ROS", glyph: "◉", level: 78 },
+  { name: "Flutter", glyph: "📱", level: 65 },
+  { name: "Electronics", glyph: "⚡", level: 92 },
 ] as const;
 
 export const tools = [
-  { name: "Altium Designer", glyph: "◬" },
-  { name: "SolidWorks", glyph: "◈" },
-  { name: "Eagle", glyph: "◊" },
-  { name: "VS Code", glyph: "❮❯" },
+  { name: "Altium Designer", glyph: "◬", level: 88 },
+  { name: "SolidWorks", glyph: "◈", level: 72 },
+  { name: "Eagle", glyph: "◊", level: 70 },
+  { name: "VS Code", glyph: "❮❯", level: 90 },
 ] as const;
 
 export const softSkills = [
@@ -95,4 +95,31 @@ export const education = [
 export const languages = [
   { name: "Arabic", level: "Native", percent: 100 },
   { name: "English", level: "Good", percent: 75 },
+] as const;
+
+export const testimonials = [
+  {
+    quote:
+      "Mahmoud consistently delivers reliable, well-documented embedded solutions. His ability to go from schematic to working firmware rapidly is genuinely impressive — he's shipped some of our most complex medical wearable projects end-to-end.",
+    name: "Ahmed Salah",
+    role: "Lead Engineer",
+    company: "Comet Lab",
+    initials: "AS",
+  },
+  {
+    quote:
+      "During his internship at EME BORG, Mahmoud stood out for his self-driven learning. He picked up 3D modelling and PCB prototyping faster than anyone I've mentored. A true hardware problem-solver.",
+    name: "Omar Fathy",
+    role: "Workshop Director",
+    company: "EME BORG",
+    initials: "OF",
+  },
+  {
+    quote:
+      "Working with Mahmoud on the BalanceSense rehabilitation platform was great — he handled the full embedded stack: sensors, BLE, and Flutter app. The product shipped on time and the code was clean.",
+    name: "Sara Nasser",
+    role: "Medical Device Researcher",
+    company: "Comet Lab",
+    initials: "SN",
+  },
 ] as const;
