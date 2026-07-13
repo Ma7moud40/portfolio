@@ -1,142 +1,127 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Bot, Activity, Sprout, Cpu, Cog } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import {
-  projects,
-  projectCategories,
-  type ProjectCategory,
-} from "@/data/projects";
-import { ProjectIcon } from "@/components/project-icon";
 
-type Filter = ProjectCategory | "all";
+const sectors = [
+  {
+    title: "Medical & Rehabilitation Devices",
+    icon: Activity,
+    description: "Design and development of smart medical wearables and rehabilitation feedback systems. Specialized in sensor-fusion joint tracking, EMG muscle monitors, haptic posture trainers, and real-time clinical assessment boards.",
+    focus: "Bio-telemetry, AHRS quaternion fusion, load-cell force distribution, haptics, low-power medical grade electronics.",
+    tech: ["ESP32", "MPU-6050 / MPU-6500 IMUs", "HX711", "Bluetooth SPP/BLE", "Flutter companion apps", "Altium Designer"]
+  },
+  {
+    title: "Robotics & Mechatronics Systems",
+    icon: Bot,
+    description: "Building automated physical systems and mechanical controllers. Developed multi-degree-of-freedom robotic manipulators, inverted-pendulum self-balancing mobile platforms, and autonomous navigation rovers.",
+    focus: "Inverse kinematics, real-time PID loops, motor driver design, sensor integration, autonomous path planning.",
+    tech: ["Arduino", "STM32", "DC Gear Motors", "Servo Actuators", "Complementary Filters", "3D Modeling / Printing"]
+  },
+  {
+    title: "Agri-Tech & Agriculture Automation",
+    icon: Sprout,
+    description: "Automation of heavy agricultural and landscaping equipment to improve yield and safety. Engineered autonomous mowing robots and automated tire pressure regulation systems (ATIS) to adapt vehicle setups dynamically to soil conditions.",
+    focus: "Pneumatics/solenoid systems, high-power DC drive trains, tilt/lift safety interlocks, GPS navigation.",
+    tech: ["ATmega328P", "Relay networks", "Pressure Transducers", "RF Transceivers", "Custom Controller PCBs"]
+  },
+  {
+    title: "Power Electronics & Embedded Systems",
+    icon: Cpu,
+    description: "High-speed switching, power routing, and low-level firmware engineering. Created millisecond-level automatic AC source selectors (ATS), custom AC-to-DC converters, and smart PID temperature profiling ovens.",
+    focus: "AC mains sensing, backup power switching, high-current PCB layout, thermal management, hardware troubleshooting.",
+    tech: ["High-speed Relays", "Thermocouples & SSRs", "7-Segment Multiplexers", "RTC & SPI Interfaces", "Altium / SolidWorks"]
+  },
+  {
+    title: "Industrial Control & Automation",
+    icon: Cog,
+    description: "Developing robust automation controllers for fluid management, factory tools, and infrastructure. Built ESP32 water filtration valves using PID flow regulation and tethered pipeline rover inspection systems.",
+    focus: "Industrial HMI design, flow/pressure telemetry, analog sensor conditioning, tele-operation control links.",
+    tech: ["ESP32-CAM", "ADS1115 16-bit ADC", "TOPWAY HMI Screens", "PID Flow control", "Live Video Streams", "Encoders"]
+  }
+];
 
 export function Projects() {
-  const [filter, setFilter] = useState<Filter>("all");
-
-  const filtered = useMemo(
-    () =>
-      filter === "all"
-        ? projects
-        : projects.filter((p) => p.category === filter),
-    [filter]
-  );
-
   return (
     <section id="projects" className="container scroll-mt-24 py-24 md:py-32">
       <SectionHeading
         num="03"
-        title="Projects"
-        kicker="Selected work from 50+ delivered builds — robotics, medical, power, embedded tooling, industrial."
+        title="Sectors of Expertise"
+        kicker="Fields of specialization across robotics, medical devices, agriculture automation, power electronics, and industrial control."
       />
 
-      {/* ── Category Filter ─────────────────────────────────── */}
-      <div className="mb-12 flex flex-wrap gap-2" role="tablist">
-        {projectCategories.map((c) => (
-          <button
-            key={c.value}
-            role="tab"
-            aria-selected={filter === c.value}
-            onClick={() => setFilter(c.value)}
-            className={cn(
-              "rounded-full border px-4 py-1.5 text-xs font-medium transition-all backdrop-blur-md",
-              filter === c.value
-                ? "border-primary/30 bg-primary/10 text-primary shadow-[0_0_15px_hsl(var(--primary)/0.15),inset_0_1px_1px_rgba(255,255,255,0.06)]"
-                : "border-white/[0.08] bg-white/[0.03] text-muted-foreground hover:border-white/[0.15] hover:text-foreground hover:bg-white/[0.06]"
-            )}
-          >
-            {c.label}
-          </button>
-        ))}
-      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {sectors.map((s, idx) => {
+          const Icon = s.icon;
+          // Make medical device span 2 columns on medium/large screens to balance the grid
+          const isFeatured = idx === 0;
 
-      {/* ── Bento Grid ──────────────────────────────────────── */}
-      <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <AnimatePresence mode="popLayout">
-          {filtered.map((p, idx) => {
-            // Make every 7th item span 2 columns and rows to create a bento effect on large screens
-            const isFeatured = idx % 7 === 0;
+          return (
+            <motion.div
+              key={s.title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className={cn(
+                isFeatured ? "md:col-span-2" : ""
+              )}
+            >
+              <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl glass-card p-6 md:p-8">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                
+                <div className="relative z-10 flex flex-1 flex-col">
+                  {/* Icon */}
+                  <div className="mb-6 flex items-center justify-between">
+                    <span className="grid h-12 w-12 place-items-center rounded-xl bg-primary/10 text-primary transition-transform group-hover:scale-110">
+                      <Icon className="size-6" />
+                    </span>
+                  </div>
 
-            return (
-              <motion.div
-                key={p.slug}
-                layout
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className={cn(
-                  isFeatured ? "md:col-span-2 lg:col-span-2 lg:row-span-2" : ""
-                )}
-              >
-                <Link
-                  href={`/projects/${p.slug}`}
-                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl glass-card p-6"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                  
-                  <div className="relative z-10 flex flex-1 flex-col">
-                    <div className="mb-4 flex items-start justify-between gap-4">
-                      <div className={cn(
-                        "grid flex-none place-items-center rounded-xl bg-primary/10 text-primary transition-transform group-hover:scale-110",
-                        isFeatured ? "h-14 w-14" : "h-12 w-12"
-                      )}>
-                        <ProjectIcon slug={p.slug} className={isFeatured ? "size-7" : "size-6"} />
-                      </div>
-                      <div className="grid h-8 w-8 flex-none place-items-center rounded-full border border-white/[0.08] bg-white/[0.04] text-muted-foreground opacity-0 backdrop-blur-md transition-all group-hover:opacity-100 group-hover:border-primary/40 group-hover:text-primary">
-                        <ArrowUpRight className="size-4" />
-                      </div>
-                    </div>
+                  {/* Header Titles */}
+                  <div className="mb-4">
+                    <h3 className="font-display text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                      {s.title}
+                    </h3>
+                  </div>
 
-                    <div className="mb-3">
-                      <Badge variant="accent" size="sm" className="mb-2">
-                        {p.categoryLabel}
-                      </Badge>
-                      <h3 className={cn(
-                        "font-display font-semibold leading-tight text-foreground transition-colors group-hover:text-primary",
-                        isFeatured ? "text-2xl md:text-3xl" : "text-xl"
-                      )}>
-                        {p.title}
-                      </h3>
-                    </div>
+                  {/* Summary / Description */}
+                  <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
+                    {s.description}
+                  </p>
 
-                    <p className={cn(
-                      "mb-6 text-muted-foreground",
-                      isFeatured ? "text-base line-clamp-4" : "text-sm line-clamp-3"
-                    )}>
-                      {p.short}
+                  {/* Technical Focus */}
+                  <div className="mb-6 mt-auto border-t border-white/[0.06] pt-4">
+                    <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+                      Technical Focus
                     </p>
+                    <p className="text-xs text-muted-foreground/95 italic leading-relaxed">
+                      {s.focus}
+                    </p>
+                  </div>
 
-                    <div className="mt-auto flex flex-wrap gap-1.5 pt-4">
-                      {p.tech.slice(0, isFeatured ? 6 : 3).map((t) => (
-                        <Badge key={t} size="sm" variant="outline" className="bg-background/50">
+                  {/* Tech stack badges */}
+                  <div>
+                    <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+                      Core Stack
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {s.tech.map((t) => (
+                        <Badge key={t} size="sm" variant="outline" className="bg-background/40">
                           {t}
                         </Badge>
                       ))}
-                      {p.tech.length > (isFeatured ? 6 : 3) && (
-                        <Badge size="sm" variant="outline" className="bg-background/50 text-muted-foreground">
-                          +{p.tech.length - (isFeatured ? 6 : 3)}
-                        </Badge>
-                      )}
                     </div>
                   </div>
-                </Link>
-              </motion.div>
-            );
-          })}
-        </AnimatePresence>
-      </motion.div>
-
-      {filtered.length === 0 && (
-        <p className="py-12 text-center text-muted-foreground">
-          No projects in this category yet.
-        </p>
-      )}
+                </div>
+              </article>
+            </motion.div>
+          );
+        })}
+      </div>
     </section>
   );
 }
